@@ -1,6 +1,6 @@
 {
   "name": "try-catch-core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Asynchronous and sync tryCatch in one place. The callback is securely wrapped with a [dezalgo][] and [once][].",
   "repository": "tunnckoCore/try-catch-core",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
