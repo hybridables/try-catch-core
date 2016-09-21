@@ -41,7 +41,23 @@
     "utils.js"
   ],
   "keywords": [
-    "try-catch-core"
+    "async",
+    "block",
+    "callback",
+    "catch",
+    "cb",
+    "core",
+    "dezalgo",
+    "done",
+    "next",
+    "once",
+    "onetime",
+    "safe",
+    "sync",
+    "synchronous",
+    "try",
+    "try-catch-core",
+    "trycatch"
   ],
   "config": {
     "commitizen": {
