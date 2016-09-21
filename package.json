@@ -69,13 +69,15 @@
       "engine",
       "engine-base",
       "engine-cache",
+      "es6-template",
+      "gana",
       "generate",
       "standard",
       "templates",
       "update",
       "verb",
-      "es6-template",
-      "gana"
+      "dezalgo",
+      "once"
     ],
     "lint": {
       "reflinks": true
