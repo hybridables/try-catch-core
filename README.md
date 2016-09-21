@@ -16,13 +16,6 @@ npm i try-catch-core --save
 const tryCatchCore = require('try-catch-core')
 ```
 
-## Related
-- [async-helpers](https://www.npmjs.com/package/async-helpers): Use async helpers in templates with engines that typically only handle sync… [more](https://github.com/doowb/async-helpers) | [homepage](https://github.com/doowb/async-helpers "Use async helpers in templates with engines that typically only handle sync helpers. Handlebars and Lodash have been tested.")
-- [engine-base](https://www.npmjs.com/package/engine-base): Default engine for Template. | [homepage](https://github.com/jonschlinkert/engine-base "Default engine for Template.")
-- [es6-template](https://www.npmjs.com/package/es6-template): Easy and small template engine for the browser and nodejs. | [homepage](https://github.com/tunnckocore/es6-template#readme "Easy and small template engine for the browser and nodejs.")
-- [j140](https://www.npmjs.com/package/j140): Template engine in 140 bytes, by @jed Schmidt. Support helpers, partials and… [more](https://github.com/tunnckocore/j140#readme) | [homepage](https://github.com/tunnckocore/j140#readme "Template engine in 140 bytes, by @jed Schmidt. Support helpers, partials and pre-compiled templates. For nodejs and the browser. Browserify-ready.")
-- [octet](https://www.npmjs.com/package/octet): 1kb template engine for the browser and nodejs. Support helpers, partials and… [more](https://github.com/tunnckocore/octet#readme) | [homepage](https://github.com/tunnckocore/octet#readme "1kb template engine for the browser and nodejs. Support helpers, partials and more. Used in AbsurdJS.")
-
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/tunnckoCore/try-catch-core/issues/new).  
 But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines.
@@ -31,19 +24,8 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 
 [![tunnckoCore.tk][author-www-img]][author-www-url] [![keybase tunnckoCore][keybase-img]][keybase-url] [![tunnckoCore npm][author-npm-img]][author-npm-url] [![tunnckoCore twitter][author-twitter-img]][author-twitter-url] [![tunnckoCore github][author-github-img]][author-github-url]
 
-[assemble]: https://github.com/assemble/assemble
 [dezalgo]: https://github.com/npm/dezalgo
-[engine-base]: https://github.com/jonschlinkert/engine-base
-[engine-cache]: https://github.com/jonschlinkert/engine-cache
-[engine]: https://github.com/jonschlinkert/engine
-[es6-template]: https://github.com/tunnckocore/es6-template
-[gana]: https://github.com/tunnckocore/gana
-[generate]: https://github.com/generate/generate
 [once]: https://github.com/isaacs/once
-[standard]: http://standardjs.com
-[templates]: https://github.com/jonschlinkert/templates
-[update]: https://github.com/update/update
-[verb]: https://github.com/verbose/verb
 
 [npmjs-url]: https://www.npmjs.com/package/try-catch-core
 [npmjs-img]: https://img.shields.io/npm/v/try-catch-core.svg?label=try-catch-core

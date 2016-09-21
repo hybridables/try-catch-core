@@ -55,32 +55,15 @@
     "tasks": [
       "readme"
     ],
-    "related": {
-      "list": [
-        "es6-template",
-        "octet",
-        "j140",
-        "engine-base",
-        "async-helpers"
-      ]
-    },
-    "reflinks": [
-      "assemble",
-      "engine",
-      "engine-base",
-      "engine-cache",
-      "es6-template",
-      "gana",
-      "generate",
-      "standard",
-      "templates",
-      "update",
-      "verb",
-      "dezalgo",
-      "once"
-    ],
     "lint": {
       "reflinks": true
-    }
+    },
+    "related": {
+      "list": []
+    },
+    "reflinks": [
+      "dezalgo",
+      "once"
+    ]
   }
 }
