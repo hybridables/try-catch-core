@@ -1,8 +1,8 @@
-# Contributing to try-catch-async
+# Contributing to try-catch-core
 
 :sparkles: Thanks for your contribution in advance! :tada:
 
-First and foremost, thank you! We appreciate that you want to contribute to `try-catch-async`, your time is valuable, and your contributions mean a lot to us.
+First and foremost, thank you! We appreciate that you want to contribute to `try-catch-core`, your time is valuable, and your contributions mean a lot to us.
 
 ## What does "contributing" mean?
 
@@ -16,9 +16,9 @@ But you aren't limited to these things. Use your imagination. If you like a proj
 
 ### Improve documentation
 
-As a user of `try-catch-async` you're the perfect candidate to help us improve our documentation. Typo corrections, error fixes, better explanations, more examples, etc. Open issues for things that could be improved. Anything. Even improvements to this document.
+As a user of `try-catch-core` you're the perfect candidate to help us improve our documentation. Typo corrections, error fixes, better explanations, more examples, etc. Open issues for things that could be improved. Anything. Even improvements to this document.
 
-Use the [`docs` label](https://github.com/tunnckoCore/try-catch-async/labels/docs) to find suggestions for what we'd love to see more documentation on.
+Use the [`docs` label](https://github.com/tunnckoCore/try-catch-core/labels/docs) to find suggestions for what we'd love to see more documentation on.
 
 ### Improve issues
 
@@ -28,7 +28,7 @@ Some issues are created with missing information, not reproducible, or plain inv
 
 We're always looking for more opinions on discussions in the issue tracker. It's a good opportunity to influence the future direction of AVA.
 
-The [`question` label](https://github.com/tunnckoCore/try-catch-async/labels/question) is a good place to find ongoing discussions.
+The [`question` label](https://github.com/tunnckoCore/try-catch-core/labels/question) is a good place to find ongoing discussions.
 
 
 ## Why should I contribute?
@@ -75,7 +75,7 @@ Providing these details up front will make everyone happy. If you don't provide 
 
 Always include the following essential details in every bug report:
 
-1. **version**: what version of `try-catch-async` were you using when you experienced the bug?
+1. **version**: what version of `try-catch-core` were you using when you experienced the bug?
 2. **description**: clear description of the bug, and minimum steps to reproduce it.
 3. **error messages**: paste any error messages into the issue or a [github gist](https://gist.github.com/), use [gfm code blocks][gfm].
 4. **code**: paste any code necessary for reproducing the bug and use [gfm code blocks][gfm] to wrap the code.
