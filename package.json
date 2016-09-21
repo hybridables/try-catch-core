@@ -1,0 +1,84 @@
+{
+  "name": "try-catch-core",
+  "version": "0.0.0",
+  "description": "Asynchronous and sync tryCatch in one place. The callback is securely wrapped with a [dezalgo][] and [once][].",
+  "repository": "tunnckoCore/try-catch-core",
+  "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
+  "precommit.silent": true,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "standard --verbose",
+    "pretest": "npm run lint",
+    "test": "npm run coverage",
+    "posttest": "npm run lint:coverage",
+    "coverage": "nyc node test.js",
+    "lint:coverage": "nyc check-coverage --lines 100 --statements 100 --functions 100",
+    "report-coverage": "nyc report --reporter=text-lcov | coveralls",
+    "prerelease": "npm test",
+    "release": "standard-version --sign --no-verify",
+    "precommit": "git add --all",
+    "commit": "git-cz"
+  },
+  "dependencies": {
+    "dezalgo": "^1.0.3",
+    "is-async-function": "^1.1.5",
+    "lazy-cache": "^2.0.1",
+    "once": "^1.4.0"
+  },
+  "devDependencies": {
+    "commitizen": "^2.8.6",
+    "coveralls": "^2.11.12",
+    "cz-conventional-changelog": "^1.2.0",
+    "mukla": "^0.4.1",
+    "nyc": "^8.1.0",
+    "pre-commit": "^1.1.3",
+    "standard": "^8.1.0",
+    "standard-version": "^2.4.0"
+  },
+  "files": [
+    "index.js",
+    "utils.js"
+  ],
+  "keywords": [
+    "try-catch-core"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "related": {
+      "list": [
+        "es6-template",
+        "octet",
+        "j140",
+        "engine-base",
+        "async-helpers"
+      ]
+    },
+    "reflinks": [
+      "assemble",
+      "engine",
+      "engine-base",
+      "engine-cache",
+      "generate",
+      "standard",
+      "templates",
+      "update",
+      "verb",
+      "es6-template",
+      "gana"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  }
+}
