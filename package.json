@@ -55,15 +55,23 @@
     "tasks": [
       "readme"
     ],
-    "lint": {
-      "reflinks": true
-    },
     "related": {
-      "list": []
+      "list": [
+        "try-require-please",
+        "gana-compile",
+        "is-async-function",
+        "function-arguments",
+        "relike"
+      ]
     },
     "reflinks": [
       "dezalgo",
-      "once"
-    ]
+      "once",
+      "common-callback-names",
+      "gana"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
