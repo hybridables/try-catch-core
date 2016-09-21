@@ -15,9 +15,13 @@ module.exports = function tryCatchCore (fn, cb) {
   }
   if (typeof cb !== 'function') {
     return function thunk (done) {
-      tryCatchCore(fn, done)
+      tryCatch(fn, done)
     }
   }
+  tryCatch(fn, cb)
+}
+
+function tryCatch (fn, cb) {
   if (utils.isAsync(fn)) {
     fn(utils.once(utils.dezalgo(cb)))
     return
