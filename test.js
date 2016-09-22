@@ -21,6 +21,18 @@ test('should throw TypeError if `fn` (the 1st arg) not a function', function (do
   done()
 })
 
+test('should throw TypeError if no function is passed to `thunk`', function (done) {
+  var thunk = tryCatchCore(function () {
+    return 'foobar'
+  })
+  function fixture () {
+    thunk(123)
+  }
+  test.throws(fixture, TypeError)
+  test.throws(fixture, /try-catch-core: expect `cb` to be a function/)
+  done()
+})
+
 test('should return thunk if `cb` (the 2nd arg) not a function', function (done) {
   var thunk = tryCatchCore(function (next) {
     next(null, 123)

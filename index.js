@@ -89,6 +89,9 @@ module.exports = function tryCatchCore (fn, cb) {
 }
 
 function tryCatch (fn, cb) {
+  if (typeof cb !== 'function') {
+    throw new TypeError('try-catch-core: expect `cb` to be a function')
+  }
   if (utils.isAsync(fn)) {
     fn(utils.once(utils.dezalgo(cb)))
     return
