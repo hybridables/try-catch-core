@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/tunnckocore/try-catch-core/compare/v1.0.2...v1.0.3) (2016-09-22)
+
+
+### Bug Fixes
+
+* **dependency:** use `try-catch-callback` ([447b20b](https://github.com/tunnckocore/try-catch-core/commit/447b20b))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/tunnckocore/try-catch-core/compare/v1.0.1...v1.0.2) (2016-09-22)
 
