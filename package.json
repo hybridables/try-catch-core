@@ -77,7 +77,10 @@
         "gana-compile",
         "is-async-function",
         "function-arguments",
-        "relike"
+        "relike",
+        "gana",
+        "catchup",
+        "try-catch-callback"
       ]
     },
     "reflinks": [
