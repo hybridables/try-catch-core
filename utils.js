@@ -11,6 +11,7 @@ require = utils // eslint-disable-line no-undef, no-native-reassign, no-global-a
 require('dezalgo')
 require('is-async-function', 'isAsync')
 require('once')
+require('try-catch-callback')
 require = fn // eslint-disable-line no-undef, no-native-reassign, no-global-assign
 
 /**

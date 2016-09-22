@@ -96,15 +96,5 @@ function tryCatch (fn, cb) {
     fn(utils.once(utils.dezalgo(cb)))
     return
   }
-
-  var ret = null
-  cb = utils.once(cb)
-
-  try {
-    ret = fn(cb)
-  } catch (err) {
-    if (!cb.called) return cb(err)
-  }
-
-  if (!cb.called) return cb(null, ret)
+  utils.tryCatchCallback(fn, utils.once(cb), true)
 }
