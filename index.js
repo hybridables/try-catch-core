@@ -1,5 +1,5 @@
 /*!
- * try-catch-core <https://github.com/tunnckoCore/try-catch-core>
+ * try-catch-core <https://github.com/hybridables/try-catch-core>
  *
  * Copyright (c) 2016 Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
  * Released under the MIT license.

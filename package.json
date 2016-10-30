@@ -2,7 +2,7 @@
   "name": "try-catch-core",
   "version": "1.0.3",
   "description": "Asynchronous and sync tryCatch in one place. The callback is securely wrapped with a [dezalgo][] and [once][].",
-  "repository": "tunnckoCore/try-catch-core",
+  "repository": "hybridables/try-catch-core",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
   "precommit.silent": true,
   "main": "index.js",
@@ -85,10 +85,13 @@
       ]
     },
     "reflinks": [
-      "dezalgo",
-      "once",
       "common-callback-names",
-      "gana"
+      "dezalgo",
+      "gana",
+      "once",
+      "es6-template",
+      "gana-compile",
+      "try-catch-core"
     ],
     "lint": {
       "reflinks": true
