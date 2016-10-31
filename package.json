@@ -67,7 +67,11 @@
   },
   "verb": {
     "run": true,
-    "toc": false,
+    "toc": {
+      "render": true,
+      "method": "preWrite",
+      "maxdepth": 4
+    },
     "layout": "empty",
     "tasks": [
       "readme"
@@ -87,11 +91,13 @@
     "reflinks": [
       "common-callback-names",
       "dezalgo",
-      "gana",
-      "once",
       "es6-template",
+      "gana",
       "gana-compile",
-      "try-catch-core"
+      "once",
+      "try-catch-core",
+      "always-done",
+      "try-catch-callback"
     ],
     "lint": {
       "reflinks": true

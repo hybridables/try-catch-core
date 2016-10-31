@@ -61,15 +61,6 @@ var utils = require('./utils')
  * })
  * ```
  *
- * **Why this can be useful?**
- *
- *  __1)__ Because this can be used to handle completion
- * and errors of anything like Observable, Promises,
- * Streams, Child Processes and Synchronous functions.
- * __2)__ Can also be tricked the `fn` to accept generator
- * functions, so later you can just yield what you want.
- * __3)__ Or what about to be used as _"thunkify"_ lib?
- *
  * @param  {Function} `<fn>` function to call
  * @param  {Function} `[cb]` done callback to be used
  * @return {Function} `thunk` only if `cb` is not a function

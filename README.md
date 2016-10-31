@@ -10,6 +10,19 @@
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
+## Table of Contents
+- [Install](#install)
+- [Usage](#usage)
+- [Background](#background)
+  * [What is this?](#what-is-this)
+  * [Why this exists?](#why-this-exists)
+  * [What is useful for?](#what-is-useful-for)
+  * [Why not plain try/catch?](#why-not-plain-trycatch)
+- [API](#api)
+  * [tryCatchCore](#trycatchcore)
+- [Related](#related)
+- [Contributing](#contributing)
+
 ## Install
 ```
 npm i try-catch-core --save
@@ -19,19 +32,47 @@ npm i try-catch-core --save
 > For more use-cases see the [tests](./test.js)
 
 ```js
+const fs = require('fs')
 const tryCatchCore = require('try-catch-core')
+
+tryCatchCore((cb) => {
+  fs.readFile('./package.json', 'utf8', cb)
+}, (err, res) => {
+  if (err) return console.error(err)
+
+  let json = JSON.parse(res)
+  console.log(json.name) // => 'try-catch-core'
+})
 ```
 
-### [tryCatchCore](index.js#L79)
-> Executes given `fn` and pass results/errors to the `callback` if given, otherwise returns a thunk.
+## Background
+Why this exists? What is useful for? What's its core purpose and why not to use something other? Why not plain try/catch block? What is this?
 
-**Why this can be useful?**
- __1)__ Because this can be used to handle completion
-and errors of anything like Observable, Promises,
-Streams, Child Processes and Synchronous functions.
-__2)__ Can also be tricked the `fn` to accept generator
-functions, so later you can just yield what you want.
-__3)__ Or what about to be used as _"thunkify"_ lib?
+### What is this?
+Simply said, just try/catch block. But on steroids. Simple try/catch block with a callback to be called when some function completes - no matter that function is asynchronous or synchronous, no matter it throws.
+
+### Why this exists?
+> There are few reasons why this is built.
+
+- **simplicity:** built on [try-catch-callback][], [once][] and [dezalgo][] - with few lines of code
+- **flexibility:** allows to pass custom function context and custom arguments
+- **guarantees:** completion is always handled and always in next tick
+- **low-level:** allows to build more robust wrappers around it in higher level, such as [always-done][] to handle completion of **anything** - observables, promises, streams, synchronous and async/await functions.
+
+### What is useful for?
+It's always useful to have low-level libs as this one. Because you can build more higher level libs on top of this one. For example you can create one library to handle completion of generator functions. It would be simply one type check, converting that generator function to function that returns a promise, than handle that promise in the callback.
+
+Brilliant example of higher level lib is [always-done][] which just pass given function to this lib, and handles the returned value inside callback with a few checks.
+
+Another thing can be to be used as _"thunkify"_ lib, because if you does not give a callback it returns a function (thunk) that accepts a callback.
+
+### Why not plain try/catch?
+Guarantees. This package gives you guarantees that you will get correct result and/or error of execution of some function. And removes the boilerplate stuff. Also works with both synchronous and asynchronous functions. But the very main thing that it does is that it calls the given callback in the next tick of event loop and that callback always will be called only once.
+
+## API
+
+### [tryCatchCore](index.js#L70)
+> Executes given `fn` and pass results/errors to the `callback` if given, otherwise returns a thunk.
 
 **Params**
 
@@ -104,10 +145,15 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 
 [![tunnckoCore.tk][author-www-img]][author-www-url] [![keybase tunnckoCore][keybase-img]][keybase-url] [![tunnckoCore npm][author-npm-img]][author-npm-url] [![tunnckoCore twitter][author-twitter-img]][author-twitter-url] [![tunnckoCore github][author-github-img]][author-github-url]
 
+[always-done]: https://github.com/hybridables/always-done
 [common-callback-names]: https://github.com/tunnckocore/common-callback-names
 [dezalgo]: https://github.com/npm/dezalgo
+[es6-template]: https://github.com/tunnckocore/es6-template
+[gana-compile]: https://github.com/tunnckocore/gana-compile
 [gana]: https://github.com/tunnckocore/gana
 [once]: https://github.com/isaacs/once
+[try-catch-callback]: https://github.com/tunnckocore/try-catch-callback
+[try-catch-core]: https://github.com/tunnckocore/try-catch-core
 
 [npmjs-url]: https://www.npmjs.com/package/try-catch-core
 [npmjs-img]: https://img.shields.io/npm/v/try-catch-core.svg?label=try-catch-core
@@ -154,6 +200,3 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 [new-message-url]: https://github.com/tunnckoCore/ama
 [new-message-img]: https://img.shields.io/badge/ask%20me-anything-green.svg
 
-[es6-template]: https://github.com/tunnckocore/es6-template
-[gana-compile]: https://github.com/tunnckocore/gana-compile
-[try-catch-core]: https://github.com/tunnckocore/try-catch-core
