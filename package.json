@@ -25,7 +25,7 @@
     "is-async-function": "^1.1.5",
     "lazy-cache": "^2.0.1",
     "once": "^1.4.0",
-    "try-catch-callback": "^1.1.1"
+    "try-catch-callback": "^1.1.2"
   },
   "devDependencies": {
     "commitizen": "^2.8.6",

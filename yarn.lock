@@ -2615,9 +2615,9 @@ trim-off-newlines@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-off-newlines/-/trim-off-newlines-1.0.1.tgz#9f9ba9d9efa8764c387698bcbfeb2c848f11adb3"
 
-try-catch-callback@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/try-catch-callback/-/try-catch-callback-1.1.1.tgz#52b27b29af77da3213a55e8a081a9cf01e8a2759"
+try-catch-callback@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/try-catch-callback/-/try-catch-callback-1.1.2.tgz#b207542bfd87a2f888a0a4032a8bd1f6ebaaa13e"
 
 tryit@^1.0.1:
   version "1.0.3"
