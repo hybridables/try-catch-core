@@ -93,3 +93,32 @@ test('should pass result from `fs.readFile` to the callback', function (done) {
     done()
   })
 })
+
+test('should be able to pass custom arguments through options', function (done) {
+  tryCatchCore(function (foo, bar, next) {
+    test.strictEqual(arguments.length, 3)
+    test.strictEqual(foo, 1)
+    test.strictEqual(bar, 2)
+    next(null, foo)
+  }, function (err, res) {
+    test.strictEqual(err, null)
+    test.strictEqual(res, 1)
+    done()
+  }, { args: [ 1, 2 ] })
+})
+
+test('should not pass a callback to `fn` if passCallback:false', function (done) {
+  tryCatchCore(function () {
+    test.strictEqual(arguments.length, 0)
+  }, function (err, res) {
+    test.strictEqual(err, null)
+    test.strictEqual(res, undefined)
+    done()
+  }, { passCallback: false })
+})
+
+test('should pass custom context to `fn` through options', function (done) {
+  tryCatchCore(function () {
+    test.strictEqual(this.foo, 'bar')
+  }, done, { context: { foo: 'bar' } })
+})

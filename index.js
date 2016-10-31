@@ -67,25 +67,31 @@ var utils = require('./utils')
  * @api public
  */
 
-module.exports = function tryCatchCore (fn, cb) {
+module.exports = function tryCatchCore (fn, cb, opts) {
   if (typeof fn !== 'function') {
     throw new TypeError('try-catch-core: expect `fn` to be a function')
   }
   if (typeof cb !== 'function') {
     return function thunk (done) {
-      tryCatch(fn, done)
+      tryCatch.call(this, fn, done, cb || opts)
     }
   }
-  tryCatch(fn, cb)
+  tryCatch.call(this, fn, cb, opts)
 }
 
-function tryCatch (fn, cb) {
+function tryCatch (fn, cb, opts) {
   if (typeof cb !== 'function') {
     throw new TypeError('try-catch-core: expect `cb` to be a function')
   }
-  if (utils.isAsync(fn)) {
-    fn(utils.once(utils.dezalgo(cb)))
-    return
-  }
-  utils.tryCatchCallback(fn, utils.once(cb), true)
+  cb = utils.isAsync(fn)
+    ? utils.once(utils.dezalgo(cb))
+    : utils.once(cb)
+  opts = opts && typeof opts === 'object'
+    ? opts
+    : {}
+  opts.passCallback = typeof opts.passCallback === 'boolean'
+    ? opts.passCallback
+    : true
+
+  utils.tryCatchCallback.call(this, fn, cb, opts)
 }
