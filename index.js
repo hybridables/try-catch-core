@@ -63,6 +63,7 @@ var utils = require('./utils')
  *
  * @param  {Function} `<fn>` function to call
  * @param  {Function} `[cb]` done callback to be used
+ * @param  {Object} `[opts]` optional options passed to [try-catch-callback][]
  * @return {Function} `thunk` only if `cb` is not a function
  * @api public
  */
