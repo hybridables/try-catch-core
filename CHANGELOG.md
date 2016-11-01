@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/hybridables/try-catch-core/compare/v2.0.0...v2.0.1) (2016-11-01)
+
+
+### Bug Fixes
+
+* **sync:** fix synchronous completion ([58c704b](https://github.com/hybridables/try-catch-core/commit/58c704b))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/hybridables/try-catch-core/compare/v1.0.4...v2.0.0) (2016-11-01)
 
