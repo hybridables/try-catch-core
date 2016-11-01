@@ -12,59 +12,39 @@ var utils = require('./utils')
 /**
  * > Executes given `fn` and pass results/errors
  * to the `callback` if given, otherwise returns
- * a thunk.
+ * a thunk. In below example you will see how passing
+ * custom arguments can be useful and why such options
+ * exists.
  *
  * **Example**
  *
  * ```js
- * var fs = require('fs')
  * var tryCatch = require('try-catch-core')
+ * var options = {
+ *   context: { num: 123, bool: true }
+ *   args: [require('assert')]
+ * }
  *
- * // successful synchronous handling
- * tryCatch(function () {
- *   return 'foo bar'
- * }, function done (err, res) {
- *   console.log(err) // => null
- *   console.log(res) // => 'foo bar'
- * })
- *
- * // failing sync handling
- * tryCatch(function () {
- *   throw new Error('qux baz')
- * }, function done (err) {
- *   console.log(err) // => Error: qux baz
- * })
- *
- * // async error handling
- * tryCatch(function (done) {
- *   fs.readFile('not-existing', done)
- * }, function done (err) {
- *   console.log(err)
- *   // => Error: ENOENT, no such file or directory
- * })
- *
- * // successful async handling
- * tryCatch(function (done) {
- *   fs.readFile('./package.json', 'utf-8', done)
- * }, function done (err, str) {
- *   console.log(err) // => null
- *   console.log(JSON.parse(str).name) // => 'try-catch-core'
- * })
- *
- * // returning thunk
- * var thunk = tryCatch(function () {
- *   return JSON.parse('{"foo":"bar qux"}')
- * })
- * thunk(function done (err, obj) {
- *   console.log(err) // => null
- *   console.log(obj.foo) // => 'bar qux'
+ * // `next` is always there, until
+ * // you pass `passCallback: false` to options
+ * tryCatch(function (assert, next) {
+ *   assert.strictEqual(this.num, 123)
+ *   assert.strictEqual(this.bool, true)
+ *   next()
+ * }, function (err) {
+ *   console.log('done', err)
  * })
  * ```
  *
- * @param  {Function} `<fn>` function to call
- * @param  {Object} `[opts]` optional options passed to [try-catch-callback][]
- * @param  {Function} `[cb]` done callback to be used
- * @return {Function} `thunk` only if `cb` is not given
+ * @param  {Function} `<fn>` function to be called.
+ * @param  {Object} `[opts]` optional options, such as `context` and `args`, passed to [try-catch-callback][]
+ * @param  {Object} `[opts.context]` context to be passed to `fn`
+ * @param  {Array} `[opts.args]` custom argument(s) to be pass to `fn`, given value is arrayified
+ * @param  {Boolean} `[opts.passCallback]` pass `true` if you want `cb` to be passed to `fn` args.
+ * @param  {Function} `[cb]` callback with `cb(err, res)` signature.
+ * @return {Function} `thunk` if `cb` not given.
+ * @throws {TypError} if `fn` not a function.
+ * @throws {TypError} if no function is passed to `thunk`.
  * @api public
  */
 

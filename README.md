@@ -20,6 +20,14 @@
   * [Why not plain try/catch?](#why-not-plain-trycatch)
 - [API](#api)
   * [tryCatchCore](#trycatchcore)
+- [Supports](#supports)
+  * [Successful completion of sync functions](#successful-completion-of-sync-functions)
+  * [Failing completion of synchronous](#failing-completion-of-synchronous)
+  * [Completion of async functions (callbacks)](#completion-of-async-functions-callbacks)
+  * [Failing completion of callbacks](#failing-completion-of-callbacks)
+  * [Passing custom context](#passing-custom-context)
+  * [Passing custom arguments](#passing-custom-arguments)
+  * [Returning a thunk](#returning-a-thunk)
 - [Related](#related)
 - [Contributing](#contributing)
 
@@ -69,64 +77,163 @@ Another thing can be to be used as _"thunkify"_ lib, because if you does not giv
 ### Why not plain try/catch?
 Guarantees. This package gives you guarantees that you will get correct result and/or error of execution of some function. And removes the boilerplate stuff. Also works with both synchronous and asynchronous functions. But the very main thing that it does is that it calls the given callback in the next tick of event loop and that callback always will be called only once.
 
+**[back to top](#readme)**
+
 ## API
 
-### [tryCatchCore](index.js#L71)
-> Executes given `fn` and pass results/errors to the `callback` if given, otherwise returns a thunk.
+### [tryCatchCore](index.js#L51)
+> Executes given `fn` and pass results/errors to the `callback` if given, otherwise returns a thunk. In below example you will see how passing custom arguments can be useful and why such options exists.
 
 **Params**
 
-* `<fn>` **{Function}**: function to call    
-* `[opts]` **{Object}**: optional options passed to [try-catch-callback][]    
-* `[cb]` **{Function}**: done callback to be used    
-* `returns` **{Function}** `thunk`: only if `cb` is not given  
+* `<fn>` **{Function}**: function to be called.    
+* `[opts]` **{Object}**: optional options, such as `context` and `args`, passed to [try-catch-callback][]    
+* `[opts.context]` **{Object}**: context to be passed to `fn`    
+* `[opts.args]` **{Array}**: custom argument(s) to be pass to `fn`, given value is arrayified    
+* `[opts.passCallback]` **{Boolean}**: pass `true` if you want `cb` to be passed to `fn` args.    
+* `[cb]` **{Function}**: callback with `cb(err, res)` signature.    
+* `returns` **{Function}** `thunk`: if `cb` not given.  
 
 **Example**
 
 ```js
-var fs = require('fs')
 var tryCatch = require('try-catch-core')
+var options = {
+  context: { num: 123, bool: true }
+  args: [require('assert')]
+}
 
-// successful synchronous handling
-tryCatch(function () {
-  return 'foo bar'
-}, function done (err, res) {
-  console.log(err) // => null
-  console.log(res) // => 'foo bar'
-})
-
-// failing sync handling
-tryCatch(function () {
-  throw new Error('qux baz')
-}, function done (err) {
-  console.log(err) // => Error: qux baz
-})
-
-// async error handling
-tryCatch(function (done) {
-  fs.readFile('not-existing', done)
-}, function done (err) {
-  console.log(err)
-  // => Error: ENOENT, no such file or directory
-})
-
-// successful async handling
-tryCatch(function (done) {
-  fs.readFile('./package.json', 'utf-8', done)
-}, function done (err, str) {
-  console.log(err) // => null
-  console.log(JSON.parse(str).name) // => 'try-catch-core'
-})
-
-// returning thunk
-var thunk = tryCatch(function () {
-  return JSON.parse('{"foo":"bar qux"}')
-})
-thunk(function done (err, obj) {
-  console.log(err) // => null
-  console.log(obj.foo) // => 'bar qux'
+// `next` is always there, until
+// you pass `passCallback: false` to options
+tryCatch(function (assert, next) {
+  assert.strictEqual(this.num, 123)
+  assert.strictEqual(this.bool, true)
+  next()
+}, function (err) {
+  console.log('done', err)
 })
 ```
+
+**[back to top](#readme)**
+
+## Supports
+> Handle completion of synchronous functions (functions that retunrs something) and asynchronous (also known as callbacks), but not `async/await` or other functions that returns promises, streams and etc - for such thing use [always-done][].
+
+### Successful completion of sync functions
+
+```js
+const tryCatchCore = require('try-catch-core')
+
+tryCatchCore(() => {
+  return 123
+}, (err, res) => {
+  console.log(err, res) // => null, 123
+})
+```
+
+**[back to top](#readme)**
+
+### Failing completion of synchronous
+
+```js
+const tryCatchCore = require('try-catch-core')
+
+tryCatchCore(() => {
+  foo // ReferenceError
+  return 123
+}, (err) => {
+  console.log(err) // => ReferenceError: foo is not defined
+})
+```
+
+**[back to top](#readme)**
+
+### Completion of async functions (callbacks)
+
+```js
+const fs = require('fs')
+const tryCatchCore = require('try-catch-core')
+
+tryCatchCore((cb) => {
+  // do some async stuff
+  fs.readFile('./package.json', 'utf8', cb)
+}, (e, res) => {
+  console.log(res) // => contents of package.json
+})
+```
+
+**[back to top](#readme)**
+
+### Failing completion of callbacks
+
+```js
+const fs = require('fs')
+const tryCatchCore = require('try-catch-core')
+
+tryCatchCore((cb) => {
+  fs.stat('foo-bar-baz', cb)
+}, (err) => {
+  console.log(err) // => ENOENT Error, file not found
+})
+```
+
+**[back to top](#readme)**
+
+### Passing custom context
+
+```js
+const tryCatchCore = require('try-catch-core')
+const opts = {
+  context: { foo: 'bar' }
+}
+
+tryCatchCore(function () {
+  console.log(this.foo) // => 'bar'
+}, () => {
+  console.log('done')
+}, opts)
+```
+
+**[back to top](#readme)**
+
+### Passing custom arguments
+> It may be strange, but this allows you to pass more arguments to that first function and the last argument always will be "callback" until you pass `passCallback: false`.
+
+```js
+const tryCatchCore = require('try-catch-core')
+const options = {
+  args: [1, 2]
+}
+
+tryCatchCore((a, b) => {
+  console.log(arguments.length) // => 3
+  console.log(a) // => 1
+  console.log(b) // => 2
+
+  return a + b + 3
+}, (e, res) => {
+  console.log(res) // => 9
+})
+```
+
+**[back to top](#readme)**
+
+### Returning a thunk
+> Can be used as _thunkify_ lib without problems, just don't pass a done callback.
+
+```js
+const fs = require('fs')
+const tryCatchCore = require('try-catch-core')
+const readFileThunk = tryCatchCore((cb) => {
+  fs.readFile('./package.json', cb)
+})
+
+readFileThunk((err, res) => {
+  console.log(err, res) // => null, Buffer
+})
+```
+
+**[back to top](#readme)**
 
 ## Related
 - [catchup](https://www.npmjs.com/package/catchup): Graceful error handling. Because core `domain` module is deprecated. This share almost… [more](https://github.com/tunnckocore/catchup#readme) | [homepage](https://github.com/tunnckocore/catchup#readme "Graceful error handling. Because core `domain` module is deprecated. This share almost the same API.")
