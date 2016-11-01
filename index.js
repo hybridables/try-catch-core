@@ -62,25 +62,29 @@ var utils = require('./utils')
  * ```
  *
  * @param  {Function} `<fn>` function to call
- * @param  {Function} `[cb]` done callback to be used
  * @param  {Object} `[opts]` optional options passed to [try-catch-callback][]
- * @return {Function} `thunk` only if `cb` is not a function
+ * @param  {Function} `[cb]` done callback to be used
+ * @return {Function} `thunk` only if `cb` is not given
  * @api public
  */
 
-module.exports = function tryCatchCore (fn, cb, opts) {
+module.exports = function tryCatchCore (fn, opts, cb) {
   if (typeof fn !== 'function') {
     throw new TypeError('try-catch-core: expect `fn` to be a function')
   }
+  if (typeof opts === 'function') {
+    cb = opts
+    opts = null
+  }
   if (typeof cb !== 'function') {
     return function thunk (done) {
-      tryCatch.call(this, fn, done, cb || opts)
+      tryCatch.call(this, fn, opts, done)
     }
   }
-  tryCatch.call(this, fn, cb, opts)
+  tryCatch.call(this, fn, opts, cb)
 }
 
-function tryCatch (fn, cb, opts) {
+function tryCatch (fn, opts, cb) {
   if (typeof cb !== 'function') {
     throw new TypeError('try-catch-core: expect `cb` to be a function')
   }
@@ -94,5 +98,5 @@ function tryCatch (fn, cb, opts) {
     ? opts.passCallback
     : true
 
-  utils.tryCatchCallback.call(this, fn, cb, opts)
+  utils.tryCatchCallback.call(this, fn, opts, cb)
 }

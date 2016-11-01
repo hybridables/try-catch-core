@@ -33,7 +33,7 @@ test('should throw TypeError if no function is passed to `thunk`', function (don
   done()
 })
 
-test('should return thunk if `cb` (the 2nd arg) not a function', function (done) {
+test('should return thunk if `cb` not a function', function (done) {
   var thunk = tryCatchCore(function (next) {
     next(null, 123)
   })
@@ -100,25 +100,25 @@ test('should be able to pass custom arguments through options', function (done) 
     test.strictEqual(foo, 1)
     test.strictEqual(bar, 2)
     next(null, foo)
-  }, function (err, res) {
+  }, { args: [ 1, 2 ] }, function (err, res) {
     test.strictEqual(err, null)
     test.strictEqual(res, 1)
     done()
-  }, { args: [ 1, 2 ] })
+  })
 })
 
 test('should not pass a callback to `fn` if passCallback:false', function (done) {
   tryCatchCore(function () {
     test.strictEqual(arguments.length, 0)
-  }, function (err, res) {
+  }, { passCallback: false }, function (err, res) {
     test.strictEqual(err, null)
     test.strictEqual(res, undefined)
     done()
-  }, { passCallback: false })
+  })
 })
 
 test('should pass custom context to `fn` through options', function (done) {
   tryCatchCore(function () {
     test.strictEqual(this.foo, 'bar')
-  }, done, { context: { foo: 'bar' } })
+  }, { context: { foo: 'bar' } }, done)
 })
