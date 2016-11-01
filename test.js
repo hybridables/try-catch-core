@@ -94,6 +94,16 @@ test('should pass result from `fs.readFile` to the callback', function (done) {
   })
 })
 
+test('should get result of `fs.readFileSync`', function (done) {
+  tryCatchCore(function () {
+    return fs.readFileSync('./README.md', 'utf8')
+  }, function (err, res) {
+    test.strictEqual(err, null)
+    test.strictEqual(res.indexOf('try-catch-core') !== -1, true)
+    done()
+  })
+})
+
 test('should be able to pass custom arguments through options', function (done) {
   tryCatchCore(function (foo, bar, next) {
     test.strictEqual(arguments.length, 3)

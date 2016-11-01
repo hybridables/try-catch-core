@@ -68,7 +68,8 @@ function tryCatch (fn, opts, cb) {
   if (typeof cb !== 'function') {
     throw new TypeError('try-catch-core: expect `cb` to be a function')
   }
-  cb = utils.isAsync(fn)
+  var isAsyncFn = utils.isAsync(fn)
+  cb = isAsyncFn
     ? utils.once(utils.dezalgo(cb))
     : utils.once(cb)
   opts = opts && typeof opts === 'object'
@@ -76,7 +77,7 @@ function tryCatch (fn, opts, cb) {
     : {}
   opts.passCallback = typeof opts.passCallback === 'boolean'
     ? opts.passCallback
-    : true
+    : isAsyncFn // if `fn` is async, pass callback automatically
 
   utils.tryCatchCallback.call(this, fn, opts, cb)
 }
