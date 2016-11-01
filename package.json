@@ -1,7 +1,7 @@
 {
   "name": "try-catch-core",
   "version": "1.0.4",
-  "description": "Asynchronous and sync tryCatch in one place. The callback is securely wrapped with a [dezalgo][] and [once][].",
+  "description": "Low-level package to handle completion and errors of sync or asynchronous functions, using [once][] and [dezalgo][] libs. Useful for and used in higher-level libs such as [always-done][] to handle completion of anything.",
   "repository": "hybridables/try-catch-core",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
   "precommit.silent": true,
