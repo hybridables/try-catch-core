@@ -189,15 +189,15 @@ const opts = {
 
 tryCatchCore(function () {
   console.log(this.foo) // => 'bar'
-}, () => {
+}, opts, () => {
   console.log('done')
-}, opts)
+})
 ```
 
 **[back to top](#readme)**
 
 ### Passing custom arguments
-> It may be strange, but this allows you to pass more arguments to that first function and the last argument always will be "callback" until you pass `passCallback: false`.
+> It may be strange, but this allows you to pass more arguments to that first function and the last argument always will be "callback" until `fn` is async or sync but with `passCallback: true` option.
 
 ```js
 const tryCatchCore = require('try-catch-core')
@@ -206,12 +206,12 @@ const options = {
 }
 
 tryCatchCore((a, b) => {
-  console.log(arguments.length) // => 3
+  console.log(arguments.length) // => 2
   console.log(a) // => 1
   console.log(b) // => 2
 
   return a + b + 3
-}, (e, res) => {
+}, options, (e, res) => {
   console.log(res) // => 9
 })
 ```
