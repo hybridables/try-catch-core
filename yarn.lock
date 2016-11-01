@@ -1383,7 +1383,7 @@ is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
 
-is-async-function@^1.1.5:
+is-async-function@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/is-async-function/-/is-async-function-1.2.2.tgz#96ab443cab7f822a65822cce0d54331f422f3cff"
   dependencies:
@@ -2615,9 +2615,9 @@ trim-off-newlines@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-off-newlines/-/trim-off-newlines-1.0.1.tgz#9f9ba9d9efa8764c387698bcbfeb2c848f11adb3"
 
-try-catch-callback@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/try-catch-callback/-/try-catch-callback-1.1.2.tgz#b207542bfd87a2f888a0a4032a8bd1f6ebaaa13e"
+try-catch-callback@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/try-catch-callback/-/try-catch-callback-2.0.0.tgz#4bbb06d9884cdbe5bf949fb52d4647d5f9c4c7c2"
 
 tryit@^1.0.1:
   version "1.0.3"
