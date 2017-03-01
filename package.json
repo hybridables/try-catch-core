@@ -88,15 +88,20 @@
       ]
     },
     "reflinks": [
+      "always-done",
       "common-callback-names",
       "dezalgo",
       "es6-template",
       "gana",
       "gana-compile",
       "once",
+      "try-catch-callback",
       "try-catch-core",
-      "always-done",
-      "try-catch-callback"
+      "charlike",
+      "commitizen",
+      "standard-version",
+      "verb",
+      "verb-generate-readme"
     ],
     "lint": {
       "reflinks": true
