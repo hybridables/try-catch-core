@@ -59,7 +59,7 @@ test('should be able `fn` to return sync result and get it in `cb`', function (d
 
 test('should pass error to `cb` if throws in `fn`', function (done) {
   tryCatchCore(function () {
-    qux // eslint-disable-line no-undef
+    qux // eslint-disable-line no-undef, no-unused-expressions
     return 'foo bar'
   }, function cb (err, res) {
     test.ifError(!err)
