@@ -11,9 +11,11 @@ var once = require('once')
 var dezalgo = require('dezalgo')
 var tryCatch = require('try-catch-callback')
 var isAsyncFn = require('is-async-function')
+var extendShallow = require('extend-shallow')
 
 var utils = {}
 utils.once = once
+utils.extend = extendShallow
 utils.dezalgo = dezalgo
 utils.isAsync = isAsyncFn
 utils.tryCatchCallback = tryCatch

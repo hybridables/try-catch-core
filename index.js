@@ -72,9 +72,7 @@ function tryCatch (fn, opts, cb) {
   cb = isAsyncFn
     ? utils.once(utils.dezalgo(cb))
     : utils.once(cb)
-  opts = opts && typeof opts === 'object'
-    ? opts
-    : {}
+  opts = utils.extend({}, opts)
   opts.passCallback = typeof opts.passCallback === 'boolean'
     ? opts.passCallback
     : isAsyncFn // if `fn` is async, pass callback automatically
