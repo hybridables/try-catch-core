@@ -23,7 +23,6 @@
   "dependencies": {
     "dezalgo": "^1.0.3",
     "is-async-function": "^1.2.2",
-    "lazy-cache": "^2.0.1",
     "once": "^1.4.0",
     "try-catch-callback": "^2.0.0"
   },

@@ -1,18 +1,22 @@
-'use strict'
-
-var utils = require('lazy-cache')(require)
-var fn = require
-require = utils // eslint-disable-line no-undef, no-native-reassign, no-global-assign
-
-/**
- * Lazily required module dependencies
+/*!
+ * each-promise <https://github.com/tunnckoCore/each-promise>
+ *
+ * Copyright (c) Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
+ * Released under the MIT license.
  */
 
-require('dezalgo')
-require('is-async-function', 'isAsync')
-require('once')
-require('try-catch-callback')
-require = fn // eslint-disable-line no-undef, no-native-reassign, no-global-assign
+'use strict'
+
+var once = require('once')
+var dezalgo = require('dezalgo')
+var tryCatch = require('try-catch-callback')
+var isAsyncFn = require('is-async-function')
+
+var utils = {}
+utils.once = once
+utils.dezalgo = dezalgo
+utils.isAsync = isAsyncFn
+utils.tryCatchCallback = tryCatch
 
 /**
  * Expose `utils` modules
