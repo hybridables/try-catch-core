@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/hybridables/try-catch-core/compare/v2.0.2...v2.0.3) (2017-03-01)
+
+
+### Bug Fixes
+
+* **options:** immutable options object ([ef536f3](https://github.com/hybridables/try-catch-core/commit/ef536f3)), closes [#7](https://github.com/hybridables/try-catch-core/issues/7)
+* **package:** add missed dep ([4486bc0](https://github.com/hybridables/try-catch-core/commit/4486bc0))
+* **package:** remove lazy-cache dependency ([8e2dc1f](https://github.com/hybridables/try-catch-core/commit/8e2dc1f))
+* **package:** update devDeps, npm scripts, travis, appveyor ([c5ad0ae](https://github.com/hybridables/try-catch-core/commit/c5ad0ae))
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/hybridables/try-catch-core/compare/v2.0.1...v2.0.2) (2016-11-01)
 
